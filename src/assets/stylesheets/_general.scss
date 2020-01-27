@@ -1,0 +1,417 @@
+//Text Sizes
+
+
+h1, h2 {
+    font-size: 22px;
+    font-family: $mainTextB;
+    line-height: 1.4em;
+    color: $blackRed;
+    letter-spacing: $headingLetterSpace;
+}
+h3 {
+  font-size: 12px; 
+  line-height: 1.9em;
+  letter-spacing: 0.08em;
+  font-family: $mainTextB;
+  font-weight: bold;
+}
+h4 {
+  // line-height: 1.9em;
+  // letter-spacing: 0.08em;
+  font-family: $mainTextB;
+  
+}
+h3, h4, h5  {
+    color: $blackRed;
+}
+
+
+p {
+  font-family: $mainTextR;
+  //letter-spacing: $sansSerifSpacing;
+  letter-spacing: 0.08em;
+  line-height: 1.65em;
+  color: $blackRed;
+  font-size: 14px;
+}
+
+
+p,h1,h2,h3,h4,h5,button {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+span {
+  color: $mainTextColor;
+}
+button {
+    background-color: transparent;
+    border: none;
+   // border: 1px solid $mainTextColor;
+    // padding: 10px 40px 3px  6px;
+  // font-size: 10px;
+    letter-spacing: $sansSerifSpacing;
+    font-family: $mainTextL;
+    margin: 0;
+    color: $mainTextColor;
+    // transition: color 500ms $easeInOut3, background-color 100ms $easeInOut2;
+
+    &:hover {
+      //  background-color: $greyWhite;
+   //     color: $backgroundColor;
+        cursor: pointer;
+    }
+
+    // &.active {
+    //     background-color: $greyWhite;
+    //    // cursor: none;
+    //     color: $backgroundColor;
+    // }
+
+}
+
+.btn-slide {
+
+  &.m-top {
+    margin-top: 20px;
+  }
+  font-size: 18px;
+  position: relative;
+  //height: 30px;
+  z-index: 3;
+  border: 1px solid $tagBorder;
+  padding-right: 25px;
+  padding-left: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+ // display: inline-block;
+  margin: 0;
+  min-width: 110px;
+  text-align: left;
+ 
+  margin-top: 10px;
+ // background-color: $blackRed;
+  transition: background-color 300ms $easeInOut2 ;
+
+  .button-bar {
+      position: absolute;
+      z-index: -2;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 5px;
+      background-color: $backgroundColor;
+      transition: width 500ms $easeInOut3;
+      pointer-events: none;
+  }
+  .svg-arrow {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+       z-index: -1;
+      width: 10px;
+      height: 13px;
+      transition: transform 400ms $easeInOut3 200ms;
+      transform-origin: center;
+      svg {
+          position: absolute;
+          polygon {
+              transition: fill 300ms $easeInOut3 200ms;
+          }
+      }
+  }
+  h4 {
+      position: relative;
+      z-index: -1;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      margin: 0;
+      color: $backgroundColor;
+      font-family: $mainTextR;
+      transition: color 300ms $easeInOut3;
+      pointer-events: none;
+  }
+
+  &:hover {
+
+      transition: background-color 300ms $easeInOut2 300ms;
+     
+      .button-bar {
+     
+         width: 61.8%;
+      }
+  }
+
+
+  &.light  {
+    border: 1px solid $mainTextColor;
+
+    .button-bar {
+      background-color: $mainTextColor;
+    }
+    h4 {
+       color: $mainTextColor;
+    }
+    &:hover {
+      // background-color: #fff;
+      
+      h4 {
+        color: $backgroundColor;
+      }
+    }
+
+  }
+  &.active {
+    
+    .button-bar {
+      width: calc(100% - 10px);
+    }
+    h4 {
+      color: $blackRed;
+    }
+  }
+}
+
+
+
+.nav-btn-template {
+
+  position: relative;
+  background-color: $blackRed;
+  // border: 1px solid $mainTextColor;
+  padding-right: 25px;
+  padding-left: 25px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  display: inline-block;
+  margin: 0;  
+  min-width: 110px;
+  text-align: left;
+  perspective: 100px;
+  
+  
+
+  .button-bar {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 5px;
+      background-color: $mainTextColor;
+      transition: width 500ms $easeInOut3;
+  }
+  
+  .svg-arrow {
+      position: absolute;
+      top: 13px;
+      right: 10px;
+      z-index: -1;
+      width: 13px;
+      height: 13px;
+      transition: transform 400ms $easeInOut3 200ms, right 500ms $easeInOut2;
+      transform-origin: center;
+
+      svg {
+          position: absolute;
+          polygon {
+              fill: $mainTextColor;
+              transition: fill 300ms $easeInOut3 200ms;
+          }
+      }
+  }
+  span {
+      position: relative;
+      z-index: 2;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      margin: 0;
+      color: $mainTextColor;
+      font-family: $mainTextR;
+      transition: color 300ms $easeInOut3;
+  }
+
+  &:hover {
+    
+      span {
+        color: $blackRed;
+      }
+      // .svg-arrow {
+      //   // right: 20px;
+
+      // }
+      .button-bar {
+         width: 61.8%;
+
+      }
+  }
+
+  &.prev-btn {
+    text-align: right;
+    
+    .button-bar {
+      right: 0;
+      left: auto;
+    }
+    .svg-arrow {
+      left: 25px;
+      top: 23px;
+      transform: rotate(180deg); 
+    }
+
+    // &:hover {
+    //   .svg-arrow {
+    //     // left: 20px;
+    //   }
+    // }
+  }
+}
+
+
+
+
+
+
+label {
+    font-size: 10px;
+    color: $mainTextColor;
+    letter-spacing: $sansSerifSpacing;
+}
+
+input {
+    font-size: 18px;
+    font-family: $mainTextL;
+    color: $mainTextColor;
+    background-color: $blackRed;
+    letter-spacing: $sansSerifSpacing;
+    border: none;
+    
+
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $placeHolderColor;
+    }
+
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: $placeHolderColor;
+    }
+
+    &::-ms-input-placeholder { /* Microsoft Edge */
+        color: $placeHolderColor;
+    }
+
+}
+
+textarea {
+    background-color: transparent;
+    color: $mainTextColor;
+    width: 100%;
+    font-family: $mainTextL;
+    font-size: 12px;
+    margin-top: 5px;
+    height: 130px;
+}
+
+.form-wrapper {
+  &.margin {
+      padding: ($marginD/$desktop) * 100vw;
+  }
+  &.half-margin {
+    padding: (($marginD/2)/$desktop) * 100vw;
+  }
+}
+.form-row {
+  display: flex;
+  margin: 0;
+  padding-right: ($marginD/$desktop) * 100vw;
+  padding-left: ($marginD/$desktop) * 100vw;
+  padding-bottom: 40px; 
+
+  &.tags-row {
+    padding: 80px 0px;
+  }
+}
+.form-column {
+  flex-grow: 1;
+  padding-left: ($marginD/$desktop) * 100vw;
+  margin: 0;
+
+  &:first-child {
+    padding-left: 0px;
+  }
+
+}
+
+.input-row {
+  display: flex;
+  justify-content: flex-start;
+
+
+  .input-wrapper {
+  padding-bottom: 20px;
+  padding-top: 20px;
+  width: 100%;
+
+  //margin-right: (20/$desktop) * 100vw;
+  &:nth-child(even) {
+    margin-right: 0;
+    margin-left: (40/$desktop) * 100vw;
+  }
+
+    input {
+
+      background-color: transparent;
+      border: none;
+      border-bottom: 2px solid $greyWhite;
+      padding-bottom: 7px;
+      padding-top: 7px;
+      width: 100%;
+
+
+    }
+
+    label {
+      display: block;
+      margin: 0;
+      font-family: $mainTextL;
+    }
+  }
+}
+
+.input-info {
+  padding-top: 20px;
+}
+
+//Remove Default Styles
+
+a {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+
+@media(max-width: 460px) {
+    .form-column {
+        padding-left: 0;
+    }
+}
+//presets
+textarea, input, button { outline: none; }
+//input {-webkit-appearance: none;}
+button:focus {outline:0;};
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover, 
+select:-webkit-autofill:focus {
+ // border: inherit;
+// -webkit-text-fill-color: transparent;
+    color: $backgroundColor;
+  //-webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  //transition: background-color 5000s ease-in-out 0s;
+}
