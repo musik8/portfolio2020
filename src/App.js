@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import './assets/fonts/fonts.scss';
+import './App.scss';
+// import 'normalize.css';
+import './assets/stylesheets/_reset.scss';
+import {gsap} from 'gsap';
+import { CSSPlugin } from 'gsap/CSSPlugin'
 
-import './App.css';
 
 
 import {
@@ -12,16 +17,24 @@ import {
 } from "react-router-dom";
 
 import Three from './components/Three'
+import Home from './components/Home'
+import Background from './components/Background'
 
+ gsap.registerPlugin(CSSPlugin)
 
-
-
-
-function App() {
   
+
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      
+    }
+  }
+  render() {
     return (
       <Router>
-      <div>
+      <div className="project-container">
         {/* <nav>
           <ul>
             <li>
@@ -40,16 +53,20 @@ function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/">
+            {/* <Home /> */}
             <Three />
           </Route>
           
         </Switch>
+        <Background />
       </div>
+
     </Router>
       
 
     );
   
+}
 }
 
 

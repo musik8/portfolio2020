@@ -1,7 +1,6 @@
-$headerFont: "Libre Baskerville";
-$mainTextL: 'Poppins-Light';
-$mainTextR: 'Poppins-Regular'; 
-$mainTextB: 'Aileron';
+$mainTextR: "Founders Grotesk Regular";
+$mainTextL: "Founders Grotesk Light";
+$mainTextB: "Founders Grotesk Bold";
 
 //Lengths
 $dashLength: 722;
@@ -14,7 +13,9 @@ $marginD: 40;
 //Sizes
 $desktop: 1920;
 $mobile: 720;
-
+p,h1,h2,h3,h4,h5,button {
+    -webkit-font-smoothing: subpixel-antialiased;
+}
 
 //Text spacing
 $headingLineHeight: 1.6em;

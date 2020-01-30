@@ -1,11 +1,33 @@
 @font-face {
-    font-family: 'Aileron';
-    src: url('Aileron-Bold.eot');
-    src: url('Aileron-Bold.eot?#iefix') format('embedded-opentype'),
-        url('Aileron-Bold.woff2') format('woff2'),
-        url('Aileron-Bold.woff') format('woff'),
-        url('Aileron-Bold.ttf') format('truetype');
+    font-family: 'Founders Grotesk';
+    src: url('FoundersGrotesk-Regular.eot');
+    src: url('FoundersGrotesk-Regular.eot?#iefix') format('embedded-opentype'),
+        url('FoundersGrotesk-Regular.woff2') format('woff2'),
+        url('FoundersGrotesk-Regular.woff') format('woff'),
+        url('FoundersGrotesk-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Founders Grotesk';
+    src: url('FoundersGrotesk-Bold.eot');
+    src: url('FoundersGrotesk-Bold.eot?#iefix') format('embedded-opentype'),
+        url('FoundersGrotesk-Bold.woff2') format('woff2'),
+        url('FoundersGrotesk-Bold.woff') format('woff'),
+        url('FoundersGrotesk-Bold.ttf') format('truetype');
     font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Founders Grotesk';
+    src: url('FoundersGrotesk-Light.eot');
+    src: url('FoundersGrotesk-Light.eot?#iefix') format('embedded-opentype'),
+        url('FoundersGrotesk-Light.woff2') format('woff2'),
+        url('FoundersGrotesk-Light.woff') format('woff'),
+        url('FoundersGrotesk-Light.ttf') format('truetype');
+    font-weight: 300;
     font-style: normal;
 }
 

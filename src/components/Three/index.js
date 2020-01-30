@@ -2,46 +2,165 @@ import React, {useState, useRef, useEffect}from 'react'
 import './style.scss'
 import {Link} from 'react-router-dom';
 import { OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
-import { OBJLoader} from 'three/examples/jsm/loaders/OBJLoader'
-import {Canvas, useFrame, extend, useThree}  from "react-three-fiber";
-import {useSpring, a} from 'react-spring/three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
+import {Canvas, useFrame, extend, useThree, Material, useLoader}  from "react-three-fiber";
+import {useSpring, a, config} from 'react-spring/three';
 import * as THREE from 'three' 
+
 
 
 extend({OrbitControls});
 
 
-const SpaceShip = () => {
-  const [model, setModel] = useState();
-  useEffect(() => {
-    new OBJLoader().load('./../assets/models/m.obj', setModel)
-  })
+// const SpaceShip = () => {
+//   const [model, setModel] = useState();
+ 
+//   useEffect(() => {
+//     const model = useLoader(GLTFLoader, "/mModel.gltf")
+//     // new GLTFLoader().load("/mModel.gltf", setModel)
+//   })
 
-  return (
-    model ? <primitive object={model.scene}/> : null
-  )
-}
-
-
-const Controls = () => {
-
-  const orbitRef = useRef();
-  const {camera, gl} = useThree()
   
-  useFrame(()=> {
-    orbitRef.current.update()
+//   return model ? <primitive object={model.scene} /> : null
+// }
+
+const LeftM = () => {
+
+  //This is used in useFrame
+  const primRef = useRef();
+  const [model, setModel] = useState()
+
+  const [active, setActive] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  // const props = useSpring({
+  //   scale: hovered ? [2,2,2] : [0.5,0.5,0.5],
+  //   position: active ? [0,0,5] : [0,0,0],
+  //   config: { mass: 10, tension: 1000, friction: 300, precision: 0.00001 }
+  // })
+
+  // const [props] = useSpring({
+  //   to: async (next, cancel) => {
+  //     await next({position: [5,5,5], config:{duration: 5000, mass: 5}})
+  //     await next({position: [-5,-5,5], config:{duration: 1000}})
+  //   },
+  //   from: {position: [0,0,0]}
+  // })
+
+  const props = useSpring({
+    to:  active ? [{position: [5,5,5], config:{duration: 1000, mass: 5}}, 
+                  {position: [1,2,4], config:{duration: 1000, mass: 5}},
+                  {rotation: [1,2,4], config:{duration: 1000, mass: 5}}
+                
+                
+                  ] : [0,0,0],
+    from: {position: [0,0,0], rotation: [0,0,0]}
   })
 
-  return (
-    <orbitControls
-    autoRotate
-    maxPolorAngle={Math.PI / 2}
-    minPolarAngle={Math.PI / 3}
-      args={[camera, gl.domElement]}
-      ref={orbitRef}
-    />
-  )
+
+  useEffect(() => {
+    new GLTFLoader().load("/mModel.gltf", setModel)
+  }, [])
+ 
+
+    useFrame(() => {
+      if(model) {
+        // primRef.current.rotation.y += 0.01;
+      // primRef.current.rotation.x += 0.01;
+      }
+    })
+ 
+
+  return model ? (
+    
+    
+           <a.primitive  
+             ref={primRef}
+             onClick={() => setActive(true)}
+            // onClick={() => console.log("test")}
+            // onPointerOut={() => setActive(false)}
+            // onPointerOver={() => setActive(true)}
+          //  onPointerOut={() => setHovered(false)}
+           object={model.scene} 
+            scale={props.scale}
+            rotation={props.rotation}
+           position={props.position}  /> 
+  
+    ): null
+
+
 }
+
+const RightM = () => {
+
+  //This is used in useFrame
+  const primRef = useRef();
+  const [model, setModel] = useState()
+
+  const [active, setActive] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const props = useSpring({
+    scale: hovered ? [2,2,2] : [0.5,0.5,0.5],
+    position: active ? [0,0,5] : [0,0,0],
+  })
+
+  useEffect(() => {
+    new GLTFLoader().load("/mModelR.gltf", setModel)
+  }, [])
+ 
+
+    useFrame(() => {
+      if(model) {
+        // primRef.current.rotation.y += 0.01;
+      // primRef.current.rotation.x += 0.01;
+      }
+    })
+ 
+
+  return model ? (
+    
+    
+           <a.primitive  
+             ref={primRef}
+            //  onClick={() => setHovered(true)}
+            // // onClick={() => console.log("test")}
+            // onPointerOut={() => setActive(false)}
+            // onPointerOver={() => setActive(true)}
+          //  onPointerOut={() => setHovered(false)}
+          // rotation={[deg(-20), 0, 0]}
+           object={model.scene} 
+            scale={props.scale}
+            // rotation={}
+           position={props.position}  /> 
+  
+    ): null
+
+
+}
+
+
+
+
+
+// const Controls = () => {
+
+//   const orbitRef = useRef();
+//   const {camera, gl} = useThree()
+  
+//   useFrame(()=> {
+//     orbitRef.current.update()
+//   })
+
+//   return (
+//     <orbitControls
+//     autoRotate
+//     maxPolorAngle={Math.PI / 2}
+//     minPolarAngle={Math.PI / 3}
+//       args={[camera, gl.domElement]}
+//       ref={orbitRef}
+//     />
+//   )
+// }
 
 // const Plane = () => {
  
@@ -72,11 +191,11 @@ const Box = () => {
   // const meshRef = useRef(); 
  
   const [hovered, setHovered] = useState(false);
-  const [active, setActive] = useState(false);
-  const props = useSpring({
-    scale: active ? [1.5,1.5,1.5] : [1,1,1],
-    color: hovered ? 'pink': 'gray'
-  })
+  // const [active, setActive] = useState(false);
+  // const props = useSpring({
+  //   scale: active ? [1.5,1.5,1.5] : [1,1,1],
+  //   color: hovered ? 'pink': 'gray'
+  // })
 
 
   //executed every frame
@@ -89,11 +208,11 @@ const Box = () => {
   return(
   <a.mesh 
     // ref={meshRef}
-    onPointerOver={() => setHovered(true)}
-    onPointerOut={() => setHovered(false)}
-    onClick={()=>setActive(!active)}
-    scale={props.scale}
-    castShadow
+    // onPointerOver={() => setHovered(true)}
+    // onPointerOut={() => setHovered(false)}
+    // onClick={()=>setActive(!active)}
+    // scale={props.scale}
+    // castShadow
   > 
     <ambientLight />
     {/* <pointLight intensity={2} position={[-10, -25, -10]} /> */}
@@ -109,11 +228,11 @@ const Box = () => {
       shadow-mapSize-height={2048}
 
     />
-    <boxBufferGeometry
+    {/* <boxBufferGeometry
       attach="geometry"
       args={[1, 1, 1]}
-    />
-    <a.meshPhysicalMaterial attach="material" color={props.color} />
+    /> */}
+    {/* <a.meshPhysicalMaterial attach="material" color={props.color} /> */}
   </a.mesh>)
 }
 
@@ -121,15 +240,19 @@ function Three () {
 
   
   return(
-    <Canvas camera={{position:[0,0,5]} } onCreated={({ gl }) => {
-      gl.shadowMap.enabled = true 
-      gl.shadowMap.type = THREE.PCFSoftShadowMap
+    <Canvas camera={{position:[-0.4,4,20]} } onCreated={({ gl }) => {
+      // gl.shadowMap.enabled = false 
+      // gl.shadowMap.type = THREE.PCFSoftShadowMap
     }}> 
+     
+     <ambientLight intensity={1} />
+        {/* <pointLight intensity={2} position={[-10, -25, -10]} /> */}
       {/* <fog attach="fog" args={['#cc7b32', 16, 20]} /> */}
-      <Controls/>
-      <Box />
-      <Plane />
-      <SpaceShip />
+      {/* <Controls/> */}
+      {/* <Box /> */}
+      {/* <Plane /> */}
+      <LeftM />
+      <RightM />
     </Canvas>
 
 
