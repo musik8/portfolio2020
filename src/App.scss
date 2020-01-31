@@ -4,4 +4,26 @@
   width: 100vw;
   overflow: hidden;
   min-height: 50vh;
+  // background-color: 
+
+  // pointer-events: none;
+}
+html,body,canvas {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  z-index: 3;
+  .front & {
+    z-index: 11;
+  }
+  
 }

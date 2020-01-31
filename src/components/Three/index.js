@@ -5,7 +5,9 @@ import { OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'
 import {Canvas, useFrame, extend, useThree, Material, useLoader}  from "react-three-fiber";
+import {Keyframes} from 'react-spring/renderprops'
 import {useSpring, a, config} from 'react-spring/three';
+
 import * as THREE from 'three' 
 
 
@@ -25,37 +27,33 @@ extend({OrbitControls});
 //   return model ? <primitive object={model.scene} /> : null
 // }
 
-const LeftM = () => {
+const LeftM = (trigger) => {
 
+   
   //This is used in useFrame
   const primRef = useRef();
   const [model, setModel] = useState()
 
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const [hovered, setHovered] = useState(false);
-  // const props = useSpring({
-  //   scale: hovered ? [2,2,2] : [0.5,0.5,0.5],
-  //   position: active ? [0,0,5] : [0,0,0],
-  //   config: { mass: 10, tension: 1000, friction: 300, precision: 0.00001 }
-  // })
-
-  // const [props] = useSpring({
-  //   to: async (next, cancel) => {
-  //     await next({position: [5,5,5], config:{duration: 5000, mass: 5}})
-  //     await next({position: [-5,-5,5], config:{duration: 1000}})
-  //   },
-  //   from: {position: [0,0,0]}
-  // })
-
+  
   const props = useSpring({
-    to:  active ? [{position: [5,5,5], config:{duration: 1000, mass: 5}}, 
-                  {position: [1,2,4], config:{duration: 1000, mass: 5}},
-                  {rotation: [1,2,4], config:{duration: 1000, mass: 5}}
+     to: trigger.active && active ? [{position: [-10,0,-4], config:{mass: 1,tension: 250   }}, 
+                  {rotation: [-6.4,0,0], config:{mass: 2, tension: 250 }},
+                  {position: [-3,25,0], scale:[0.4,0.4,0.4], rotation:[-5.8, 0,0 ], config:{mass: 1, tension: 250 },  },
+                  {onRest: ()=> {setActive(false)}, delay: 400}
+                  // {rotation: [1,2,4], config:{duration: 1000, mass: 5}}
                 
                 
-                  ] : [0,0,0],
-    from: {position: [0,0,0], rotation: [0,0,0]}
+                  ] : null,
+    from:  {position: [-6.5,0,-5], rotation: [0,0,0], scale:[1,1,1]}
   })
+  const meshProp = useSpring( {
+    position: hovered && !active ? [0,-2,2] : [0,0,0],
+    rotation: hovered && !active ? [0,0.2,0] : [0,0,0]
+
+  })
+
 
 
   useEffect(() => {
@@ -72,45 +70,79 @@ const LeftM = () => {
  
 
   return model ? (
-    
-    
+   
+    <a.mesh
+      position={meshProp.position}
+      rotation={meshProp.rotation}
+    >
+             {/* <Link to="/"> */}
            <a.primitive  
              ref={primRef}
-             onClick={() => setActive(true)}
+            //  onClick={() => setActive(true)}
             // onClick={() => console.log("test")}
             // onPointerOut={() => setActive(false)}
-            // onPointerOver={() => setActive(true)}
-          //  onPointerOut={() => setHovered(false)}
+            onPointerOut={() => setHovered(false)}
+            onPointerOver={() => setHovered(true)}
            object={model.scene} 
             scale={props.scale}
             rotation={props.rotation}
            position={props.position}  /> 
-  
+            {/* </Link> */}
+        </a.mesh>
+      
     ): null
 
 
 }
 
-const RightM = () => {
+const RightM = (trigger) => {
 
+
+
+
+
+
+
+
+  
   //This is used in useFrame
   const primRef = useRef();
   const [model, setModel] = useState()
 
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const [hovered, setHovered] = useState(false);
+  
   const props = useSpring({
-    scale: hovered ? [2,2,2] : [0.5,0.5,0.5],
-    position: active ? [0,0,5] : [0,0,0],
+     to: trigger.active && active ? [{position: [10,0,-4], config:{mass: 1,tension: 250   }}, 
+                  {rotation: [6.4,0,0], config:{mass: 2, tension: 250 }},
+                  {position: [3,25,0], scale:[0.4,0.4,0.4], rotation:[6.8, 0,0 ], config:{mass: 1, tension: 250 },  },
+                  {onRest: ()=> {setActive(false)}, delay: 400}
+                  // {rotation: [1,2,4], config:{duration: 1000, mass: 5}}
+                
+                
+                  ] : null,
+    from:  {position: [6.5,0,-5], rotation: [0,0,0], scale:[1,1,1]}
+  })
+  const meshProp = useSpring( {
+    position: hovered && !active ? [0,-2,2] : [0,0,0],
+    rotation: hovered && !active ? [0,0.2,0] : [0,0,0]
+
   })
 
+
+
   useEffect(() => {
+    // console.log(trigger)
+    // setActive(trigger);
     new GLTFLoader().load("/mModelR.gltf", setModel)
   }, [])
  
 
     useFrame(() => {
       if(model) {
+        if(active) {
+            // primRef.current.rotation.y += 0.01;
+        }
         // primRef.current.rotation.y += 0.01;
       // primRef.current.rotation.x += 0.01;
       }
@@ -118,141 +150,48 @@ const RightM = () => {
  
 
   return model ? (
-    
-    
-           <a.primitive  
-             ref={primRef}
-            //  onClick={() => setHovered(true)}
-            // // onClick={() => console.log("test")}
-            // onPointerOut={() => setActive(false)}
-            // onPointerOver={() => setActive(true)}
-          //  onPointerOut={() => setHovered(false)}
-          // rotation={[deg(-20), 0, 0]}
-           object={model.scene} 
-            scale={props.scale}
-            // rotation={}
-           position={props.position}  /> 
   
-    ): null
+    <a.mesh
+      position={meshProp.position}
+      rotation={meshProp.rotation}
+    >
+    
+    <a.primitive  
+    ref={primRef}
+    // onClick={() => setActive(true)}
+   // onClick={() => console.log("test")}
+   onPointerOut={() => setHovered(false)}
+   onPointerOver={() => setHovered(true)}
+ //  onPointerOut={() => setHovered(false)}
+  object={model.scene} 
+   scale={props.scale}
+   rotation={props.rotation}
+  position={props.position}  /> 
+  
+  </a.mesh>  ): null
 
 
 }
 
 
+function Three (props) {
 
-
-
-// const Controls = () => {
-
-//   const orbitRef = useRef();
-//   const {camera, gl} = useThree()
-  
-//   useFrame(()=> {
-//     orbitRef.current.update()
-//   })
-
-//   return (
-//     <orbitControls
-//     autoRotate
-//     maxPolorAngle={Math.PI / 2}
-//     minPolarAngle={Math.PI / 3}
-//       args={[camera, gl.domElement]}
-//       ref={orbitRef}
-//     />
-//   )
-// }
-
-// const Plane = () => {
- 
-//  return(<mesh rotate={[-Math.PI /2, 0 ,0]}>
-//      <planeBufferGeometry
-//       attach="geometry"
-//       args={[100, 100]}
-//     />
-//     <meshPhysicalMaterial attach="material" color="red" />  
-    
-
-
-    
-//   </mesh>)
-// }
-
-
-
-const Plane = () => (
-  <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]} receiveShadow>
-    <planeBufferGeometry attach="geometry" args={[100, 100]} />
-    <meshPhysicalMaterial attach="material" color="red" />
-  </mesh>
-)
-
-const Box = () => {
-  //This is used in useFrame
-  // const meshRef = useRef(); 
- 
-  const [hovered, setHovered] = useState(false);
-  // const [active, setActive] = useState(false);
-  // const props = useSpring({
-  //   scale: active ? [1.5,1.5,1.5] : [1,1,1],
-  //   color: hovered ? 'pink': 'gray'
-  // })
-
-
-  //executed every frame
-  // useFrame(() => {
-  //   meshRef.current.rotation.y += 0.01;
-  //   meshRef.current.rotation.x += 0.01;
-  // })
-  
- 
+  console.log(props.active)
   return(
-  <a.mesh 
-    // ref={meshRef}
-    // onPointerOver={() => setHovered(true)}
-    // onPointerOut={() => setHovered(false)}
-    // onClick={()=>setActive(!active)}
-    // scale={props.scale}
-    // castShadow
-  > 
-    <ambientLight />
-    {/* <pointLight intensity={2} position={[-10, -25, -10]} /> */}
-    <spotLight
-      // castShadow
-      // penumbra={1}
-      // position={[0,5,10]}
-
-      intensity={1.25}
-      angle={Math.PI / 8}
-      position={[25, 25, 15]}
-      shadow-mapSize-width={2048}
-      shadow-mapSize-height={2048}
-
-    />
-    {/* <boxBufferGeometry
-      attach="geometry"
-      args={[1, 1, 1]}
-    /> */}
-    {/* <a.meshPhysicalMaterial attach="material" color={props.color} /> */}
-  </a.mesh>)
-}
-
-function Three () {
-
-  
-  return(
-    <Canvas camera={{position:[-0.4,4,20]} } onCreated={({ gl }) => {
+    <Canvas camera={{position:[0,4,35]} } onCreated={({ gl }) => {
       // gl.shadowMap.enabled = false 
       // gl.shadowMap.type = THREE.PCFSoftShadowMap
     }}> 
      
      <ambientLight intensity={1} />
-        {/* <pointLight intensity={2} position={[-10, -25, -10]} /> */}
+        <pointLight intensity={1} position={[-1, 0, 30]} />
       {/* <fog attach="fog" args={['#cc7b32', 16, 20]} /> */}
       {/* <Controls/> */}
       {/* <Box /> */}
       {/* <Plane /> */}
-      <LeftM />
-      <RightM />
+      <LeftM active={props.active} />
+    
+     <RightM active={props.active}/>
     </Canvas>
 
 

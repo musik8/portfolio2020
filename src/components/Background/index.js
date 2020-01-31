@@ -27,6 +27,9 @@ class Background extends Component {
     }
 
      // reference to the DOM node
+    this.hideLeft = null;
+    this.hideRight = null;
+
      this.left = null;
      this.right = null;
 
@@ -46,7 +49,6 @@ class Background extends Component {
 
   componentDidMount(){
     this.myTween
-    .add(console.log("test"))
       .to(this.m, 0.5, {y: "-100%", ease: "power4.inOut"})
       .to(this.u, 0.5, {y: "-100%", ease: "power4.inOut"}, "-=0.3")
       .to(this.sd, 0.7, {y: "0%", ease: "power4.inOut"} , "-=0.3")
@@ -60,8 +62,14 @@ class Background extends Component {
       .to(this.right, 1, {backgroundColor: "#EB383D", alpha: 0.2}, "-=1")
       .to(this.left, 1, {x: "-40%"})
       .to(this.right, 1, {x: "40%"}, "-=1")
+
+
+      .to(this.hideLeft, 1, {x: "-100%"}, "-=1")
+      .to(this.hideRight, 1, {x: "100%"}, "-=1")
+      .add(() => this.props.triggerLogo(), "-=0.2" )
+
       .to(this.sd, 0.9, {x: "-60%", ease: "power4.inOut"} , "-=0.8")
-      .to(this.gd, 0.9, {x: "60%", ease: "power4.inOut"}, "-=0.9").call();
+      .to(this.gd, 0.9, {x: "60%", ease: "power4.inOut"}, "-=0.9");
    
 
          
@@ -93,7 +101,12 @@ class Background extends Component {
 
   render() {
     return (<Fragment>
-   
+      
+    <div className="logo-hider">
+        <div ref={div => this.hideLeft  = div} className="left-hide"></div>
+        <div ref={div => this.hideRight  = div} className="right-hide"></div>
+    </div>
+
      <div className="background-container">
         
 
