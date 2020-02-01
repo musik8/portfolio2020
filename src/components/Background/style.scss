@@ -73,8 +73,19 @@
         background-size: cover;
         background-position: center;
         
-        width: 40vw;
+        width: 43.5vw;
         transform: translateX(100%);
+    }
+    .left-image {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        background-size: cover;
+        background-position: center;
+        
+        width: 42vw;
+        transform: translateX(-100%);
     }
 
     // .right-image {

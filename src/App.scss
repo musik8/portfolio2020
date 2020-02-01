@@ -7,6 +7,7 @@
   // background-color: 
 
   // pointer-events: none;
+  
 }
 html,body,canvas {
   width: 100%;
@@ -21,7 +22,8 @@ canvas {
   left: 0;
   right: 0;
   height: 0;
-  z-index: 3;
+  z-index: 4;
+  pointer-events: none;
   .front & {
     z-index: 11;
   }

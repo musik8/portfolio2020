@@ -1,0 +1,15 @@
+h2,h3,h1 {
+    font-family: $mainTextB;
+}
+
+h2 {
+    font-size: (32/1920) * 100vw;
+    letter-spacing: 0.03em;
+}
+p {
+    font-family: $mainTextR;
+    font-size: (20/1920) * 100vw;
+    line-height: 1.5em;
+    letter-spacing: 0.02em;
+}
+
