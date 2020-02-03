@@ -1,15 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import {gsap, TimelineLite} from 'gsap';
+import {gsap} from 'gsap';
 import './style.scss';
-
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-
+import data from '../../data.json'
+import ProjectDetail from './ProjectDetail'
 
 
   
@@ -18,76 +11,116 @@ class Work extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+      projectDetails: {},
+      activeProject: false,
+      activeContent: false,
     }
 
     this.container = null;
 
-    this.leftC = null;
-    this.h2 = null;
-    this.p = null; 
-    this.nav1 = null;
-    this.nav2 = null; 
+  
     // this.openingTween = new TimelineLite({paused: true, defaults: {ease: "power4.inOut"}});
     // this.closeTween = new TimelineLite({paused: true, defaults: {ease: "power4.inOut"}});
      this.openingTween = gsap.timeline({paused: true, defaults: {ease: "power4.inOut"} });
+    this.setProjectDetail = this.setProjectDetail.bind(this);
+    this.closeProjectDetails = this.closeProjectDetails.bind(this)
+     this.displayPreview = this.displayPreview.bind(this);
   }
+
+  setProjectDetail = (data) => {
+    this.setState({projectDetails : data, activeContent: true})
+
+    setTimeout(()=> {
+      this.setState({activeProject: true})
+    },800);
+
+  }
+  closeProjectDetails = () => {
+    this.setState({activeProject: false})
+
+    setTimeout(()=> {
+      this.setState({activeContent: false})
+    },800);
+
+  }
+
+  displayPreview = () => {
+
+     
+      let wordDisplay = data.map((postDetail, index) => {
+      
+
+      return(  <div key={index}  onClick={() => this.setProjectDetail(postDetail.content)}className="preview-container">
+         
+          <h2>{ postDetail.name}</h2>
+          <div  className="info">
+            <p>{postDetail.description}</p>
+            <h4>{postDetail.interaction}</h4>
+          </div>
+        </div>
+      )
+      })
+
+      
+      return wordDisplay;
+
+
+  }
+
 
 
   componentDidMount() {
     console.log("Mounting Work")
    
     this.openingTween
-    .set([this.h2, this.p, this.nav1, this.nav2],{y: 50, z: -50, alpha: 0, scaleX:0.8, scaleY:0.8})
-    .to(this.container, 0.1, {alpha : 1})
-    .to(this.leftC, 0.1, {backgroundColor: "rgba(255,255,255,1)"}, "-=0.5")
-    .to(this.h2, 0.4,{alpha: 1, y: 0, scaleX: 1, scaleY: 1})
-    .to(this.p, 0.4,{alpha: 1, y: 0, scaleX: 1, scaleY: 1} ,"-=0.3")
-    .to(this.nav1, 0.4,{alpha: 1, y: 0, scaleX: 1, scaleY: 1} ,"-=0.2")
-    .to(this.nav2, 0.4,{alpha: 1, y: 0, scaleX: 1, scaleY: 1} ,"-=0.2")
-    .to(this.nav2, 0.4,{alpha: 1, y: 0, scaleX: 1, scaleY: 1} ,"-=0.1")
-    .to(this.leftC, 0.5,{boxShadow : "-1px 11px 17px -3px rgba(0,0,0,0.62)" } ,"-=0.2")
-   
+    .set(this.container,{y: 50, alpha: 0, scaleX:0.8, scaleY:0.8,  pointerEvents: "none"})
+    .to(this.container, 0.8, {alpha : 1, y: 0, scaleX: 1, scaleY: 1})
+    .set(this.container, {clearProps: "all", })
+    .set(this.container, { alpha: 1, pointerEvents: "auto"})
 
     //After Preloader
     if(this.props.preLoader === false && this.props.initAnimation === false) {
 
       setTimeout(()=> {
-        this.openingTween.play();
-      }, 2500)
+         this.openingTween.play();
+      }, 1000)
     
         //Close Back
         setTimeout(()=> {
           // console.log("close back");
           this.props.triggerBack(false)
-        }, 3500)
+        }, 1500)
 
     }
 
   }
-
-
 
 componentDidUpdate(prevProps) {
  
   //Active if first time 
   if(this.props.preLoader === false && this.props.initAnimation === true) {
     this.props.initAnime();
+  
     setTimeout(()=> {
-      this.openingTween.play();
-    }, 2000);
+       this.openingTween.play();
+    }, 1000);
 
     setTimeout(()=> {
       this.props.triggerBack(false)
-    }, 3500)
+    }, 1500)
          
        
   }
   //Activate When it's going to be unmounted
-  // if(this.props.workState.close && this.props.workState.close !== prevProps.workState.close);
+  
   if (this.props.workState.close) {
-      this.openingTween.reverse();
-      console.log("hide Work")
+      
+       if(this.state.activeProject) {
+        this.setState({activeProject: false})
+       }
+       setTimeout(() => {
+        this.openingTween.reverse();
+       },500);
   }
 }
 
@@ -97,29 +130,11 @@ componentDidUpdate(prevProps) {
   render() {
     return (<Fragment>
    
-        <div ref={div => this.container = div} className="work-container">
-            <div  ref={div => this.leftC = div} className="left-container">
-              <h2  ref={div => this.h2 = div}> Work</h2>
-              <div  ref={div => this.p = div} className="info">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eleifend, augue ut finibus dictum, odio tortor eleifend lectus, vitae eleifend augue risus commodo dolor. </p>
-              </div>
-            </div>
-            {/* <div className="right-container">
-                <Link  ref={div => this.nav1 = div}  to="/work" className="nav-item">
-                  <div className="v-bar">
-                  </div>
-                  <h3>ABOUT</h3>
-                  
-                  </Link>
-
-                <Link  ref={div => this.nav2 = div} to="/work" className="nav-item">
-                  <div className="v-bar">
-                    </div>
-                    <h3>WORK</h3>
-  
-                </Link>
-            </div> */}
-
+        <div ref={div => this.container = div} className={`work-container  ${this.state.activeProject ? "hide" : null}  ${this.state.activeContent}` }>
+          <ProjectDetail  content={this.state.projectDetails} close={this.closeProjectDetails} active={this.state.activeProject} activeContent={this.state.activeContent}/>
+          { this.displayPreview() }
+          <div className="project-display-background">
+          </div>
         </div>
 
    </Fragment>);

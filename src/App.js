@@ -21,6 +21,7 @@ import Three from './components/Three'
 import Home from './components/Home'
 import Background from './components/Background'
 import Work from './components/Work'
+import About from './components/About'
 //import GoHome from './components/Nav'
 
 const GoHome = (props) => {
@@ -60,14 +61,18 @@ class App extends Component {
       logoAnimate: false,
       homeState: {check: false, close: false},
       workState: {check: false, close: false},
+      aboutState: {check: false, close: false},
       preLoader: true,
       initAnimation: true,
       triggerBackground: true,
       goHome: false,
     }
     this.triggerLogo = this.triggerLogo.bind(this);
+
     this.homeTransition = this.homeTransition.bind(this);
     this.workTransition = this.workTransition.bind(this);
+    this.aboutTransition = this.aboutTransition.bind(this);
+    
     this.endPreloader = this.endPreloader.bind(this);
     this.initAnime = this.initAnime.bind(this);
     this.triggerBack = this.triggerBack.bind(this);
@@ -123,6 +128,25 @@ class App extends Component {
     }
   }
 
+   
+  aboutTransition(node, done) {
+  
+    if(this.state.aboutState.check) {
+      //close
+      console.log("Close About Listener");
+      this.triggerBack(true)
+      let filler = this.state.aboutState;
+      filler.close = true;
+      filler.check = false;
+      this.setState({aboutState: filler})
+    } else {
+      //Open
+      let filler = this.state.aboutState;
+      filler.close = false;
+      filler.check = true;
+      this.setState({aboutState: filler})
+    }
+  }
 
   
   workTransition(node, done) {
@@ -150,7 +174,11 @@ class App extends Component {
     return (
       <Router>
       <div className="project-container">
-          
+      <div className="in-progress">
+        <span>Ops! Mobile display is still in the works. <br/>
+          Take a look on a bigger screen please!
+        </span>
+      </div>
       <Route path="/" render={(props) => <GoHome {...props} active={this.state.logoAnimate} sendHome={this.sendHome} goHome={this.state.goHome} />} />
 
         {/* <div className="hiddenNav"></div> */}
@@ -167,12 +195,12 @@ class App extends Component {
                      in={!!match}
                      mountOnEnter
                      unmountOnExit
-                    timeout={1500}
+                    timeout={1200}
                     addEndListener={this.homeTransition}
                     >
           
               {state => (
-                <Home status={state} homeState={this.state.homeState} triggerBack={this.triggerBack} preLoader={this.state.preLoader}  backState={this.state.triggerBackground}/>
+                <Home status={state} homeState={this.state.homeState} triggerBack={this.triggerBack} preLoader={this.state.preLoader} initAnime={this.initAnime}  initAnimation={this.state.initAnimation}  backState={this.state.triggerBackground}/>
               )} 
 
           </Transition >
@@ -201,6 +229,30 @@ class App extends Component {
        )}
        
          </Route>
+
+         <Route path="/about" exact >
+       
+       {({ match }) => (
+          <Transition
+                    appear
+                    in={!!match}
+                    mountOnEnter
+                    unmountOnExit
+                   timeout={1950}
+                   addEndListener={this.aboutTransition}
+                   >
+         
+             {state => (
+               <About status={state} aboutState={this.state.aboutState} triggerBack={this.triggerBack} preLoader={this.state.preLoader} initAnime={this.initAnime}  initAnimation={this.state.initAnimation}  backState={this.state.triggerBackground}/>
+             )} 
+
+         </Transition >
+       )}
+       
+         </Route>
+
+
+
                         
         {/* </Switch> */}
       

@@ -2,101 +2,92 @@
 
 .work-container {
     position: absolute;
-    z-index: 10;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    z-index: 3;
+    // top: 30%;
 
+    left: 0;
+    right: 0;
+    bottom: 0;
+  
     opacity: 0;
-    display: flex;
-    background-color: transparent;
 
-    .left-container {
+    display: flex;
+    justify-content: center;
+  
+    align-items: center;
+    background-color: transparent;
+     pointer-events: none;
+ 
+  &.true {
+    z-index: 5;
+  }
+
+   &.hide {
+     z-index: 5;
+     .preview-container {
+       pointer-events: none;
+      //  opacity: 0;
+     }
+
+     .project-display-background {
+       width: 100vw;
+       left: 0%;
+       transition: width 800ms $easeInOut3, left 800ms $easeInOut3;
+      //  transform: translateX(0%)
+     }
+   }
+   .project-display-background {
+      position: fixed; 
+      top: 0;
+      left: 50%;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      background-color: $darkRed;
+      transition:width 500ms $easeInOut3, left 500ms $easeInOut3;
+      width: 0;
+    
+
+     
+   }
+    .preview-container {
+      // flex: 1 1 1;
+   
+     
       // background-color: #fff;
-      background-color: rgba(255,255,255,0);
-      // border: 1px solid #000;
-      width: (600/1920) * 100vw;
-      height: (400/1920) * 100vw; 
-      margin-right: $Dmw;
+      background-color: rgba(255,255,255,1);
+      border: 10px solid #fff;
+      width: (350/1920) * 100vw;
+      height: (500/1920) * 100vw; 
+      margin: $Dmw/2;
+      margin-bottom: $Dmw *2;
       padding: $Dmw; 
       box-sizing: border-box;
 
       display: flex;
       justify-content: space-between;
       flex-direction: column;
+      transition: border 500ms $easeInOut3;
 
-      // box-shadow: -1px 11px 17px -3px rgba(0,0,0,0.62);
-      // opacity: 0;
+       box-shadow: -1px 11px 17px -3px rgba(0,0,0,0.62);
+       opacity: 1;
+
+      &:hover {
+        border: 10px solid $darkRed;
+        cursor: pointer;
+      }
 
       h2 {
-        opacity: 0;
+        opacity: 1;
+        font-size:(25/1920) * 100vw;
       }
       .info {
-        opacity: 0;
+        opacity: 1;
+        
+        h4 {
+          margin-top: 10px;
+        }
       }
     }
-    .right-container {
-      
-      height: (400/1920) * 100vw; 
-     
-      .nav-item {
-
-        opacity: 0;
-
-
-        border: 5px solid $blackRed;
-        background-color: #fff;
-        position: relative;
-        width: (250/1920) * 100vw;
-        height: (100/1920) * 100vw;
-        display: block;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-
-        margin-bottom: 10px;
-
-        transition: border 500ms $easeInOut3;
     
-        h3 {
-          font-size: (32/1920)* 100vw;
-          color: $blackRed;
-          letter-spacing: 0.2em;
-          // padding: 14px 2px 2px 2px;
-          padding-top: (15/1920) * 100vw;
-          transition: color 650ms $easeInOut3;
-          position: relative;
-          z-index: 2;
-        }
-        .v-bar {
-          position: absolute;
-          pointer-events: none;
-          z-index: 1;
-          left: (10/1920) * 100vw;
-          top: (10/1920) * 100vw;
-          bottom: (10/1920) * 100vw;
-          background-color: $blackRed;
-          width: (20/1920) * 100vw;
-
-          transition: box-shadow 500ms $easeInOut3,  width 250ms $easeInOut3, background-color 500ms $easeInOut3; 
-          box-shadow: -1px 11px 17px -8px rgba(0,0,0,0.0);
-        } 
-
-        &:hover {
-          h3 {
-            color: #fff;
-          }
-          .v-bar {
-            width: (230/1920) * 100vw;
-            background-color: $darkRed;
-            box-shadow: -1px 11px 17px -3px rgba(0,0,0,0.62);
-            
-          }
-
-          border: 5px solid $darkRed;
-        }
-
-      }
-    }
 }

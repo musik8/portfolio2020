@@ -32,7 +32,7 @@ const LeftM = (propss) => {
   const props = useSpring({
      to: propss.trigger.active && active ? [{position: [-10,0,-4],rotation:[0,0.5,0], config:{mass: 1.5,tension: 350   }}, 
                   {rotation: [-6.4,0,0], config:{mass: 1, tension: 350 }},
-                  {position: [-3.5,25,0], scale:[0.5,0.5,0.5], rotation:[-5.8, 0,0 ], config:{mass: 1, tension: 250 },  },
+                  {position: [-3.5,24,0], scale:[0.5,0.5,0.5], rotation:[-5.8, 0,0 ], config:{mass: 1, tension: 250 },  },
                   {onRest: ()=> {setActive(false)}, delay: 1000}
                   // {rotation: [1,2,4], config:{duration: 1000, mass: 5}}
                 
@@ -97,7 +97,7 @@ const RightM = (propss) => {
   const propsR = useSpring({
      to: propss.trigger.active && active ? [{position: [10,0,-4], rotation:[0,-0.5,0],  config:{mass: 1,tension: 350   }}, 
                   {rotation: [6.4,0,0], config:{mass: 1, tension: 350 }},
-                  {position: [3.5,25,0], scale:[0.5,0.5,0.5], rotation:[6.8, 0,0 ], config:{mass: 1, tension: 250 },  },
+                  {position: [3.5,24,0], scale:[0.5,0.5,0.5], rotation:[6.8, 0,0 ], config:{mass: 1, tension: 250 },  },
                   {onRest: ()=> {setActive2(false)}, delay: 1000}
                   // {rotation: [1,2,4], config:{duration: 1000, mass: 5}}
                 

@@ -34,9 +34,40 @@
       }
     }
     .right-container {
-      
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       height: (400/1920) * 100vw; 
-     
+      .contact-item {
+        opacity: 0;
+         box-sizing: border-box;
+        width: (260/1920) * 100vw;
+        height: (105/1920) * 100vw;
+        background-color: #fff;
+        padding: (22/1920)*100vw;
+        box-shadow: -1px 11px 17px -8px rgba(0,0,0,0.62);
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        h3 {
+          font-size: (32/1920)* 100vw;
+          color: $blackRed;
+          // letter-spacing: 0.2em;
+          // padding: 14px 2px 2px 2px;
+          // padding-top: (15/1920) * 100vw;
+          transition: color 650ms $easeInOut3;
+          position: relative;
+          z-index: 2;
+        }
+        a {
+          display: block;
+          text-decoration: underline;
+          color: #000;
+          font-size: (18/1920)*100vw;
+          font-family: $mainTextR;
+        }
+        
+      }
       .nav-item {
 
         opacity: 0;
@@ -53,7 +84,7 @@
         align-items: center;
         text-decoration: none;
 
-        margin-bottom: 10px;
+       
 
         transition: border 500ms $easeInOut3;
     

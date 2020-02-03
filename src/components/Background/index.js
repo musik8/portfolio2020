@@ -14,6 +14,7 @@ class Background extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      image: false
     }
 
      // reference to the DOM node
@@ -37,8 +38,8 @@ class Background extends Component {
 
      this.vLine = null;
      // reference to the animation
-     this.myTween = gsap.timeline({paused: true, defaults: {ease: "power4.inOut"} });
-     this.imageR = gsap.timeline({paused: true, defaults: {ease: "power4.inOut"} });
+     this.myTween = gsap.timeline({paused: true, delay: 1, defaults: {ease: "power4.inOut"} });
+     this.imageTween = gsap.timeline({paused: true, defaults: {ease: "power4.inOut"} });
      this.openState = gsap.timeline({paused: true, defaults: {ease: "power4.inOut"} });
   }
 
@@ -48,8 +49,8 @@ class Background extends Component {
       .to(this.u, 0.5, {y: "-100%", ease: "power4.inOut"}, "-=0.3")
       .to(this.sd, 0.7, {y: "0%", ease: "power4.inOut"} , "-=0.3")
       .to(this.gd, 0.7, {y: "0%", ease: "power4.inOut"}, "-=0.3")
-      .to(this.gd, 0.3, {alpha: 0.1, ease: "power2.in"})
-      .to(this.sd, 0.3, {alpha: 0.1, ease: "power2.in"}, "-=0.3")
+      .to(this.gd, 0.3, {alpha: 0.2, ease: "power2.in"})
+      .to(this.sd, 0.3, {alpha: 0.2, ease: "power2.in"}, "-=0.3")
       .to(this.vLine, 0.6, {height: "100%", ease: "power3.inOut"}, "-=0.2")
       .to(this.mu, 0.4, {top: "2%", scale:0.25 , ease: "power4.inOut"}, "-=0.35")
       .to(this.vLine, 0.5, {alpha: 0}, "-=0.3")
@@ -62,7 +63,7 @@ class Background extends Component {
       .to(this.hideLeft, 1, {x: "-100%"}, "-=1")
       .to(this.hideRight, 1, {x: "100%"}, "-=1")
       .add(() => this.props.triggerLogo(), "-=0.5")
-      .to(this.mainContainer, 0, {zIndex: 3})
+      .to(this.mainContainer, 0, {zIndex: 1})
 
       .to(this.sd, 0.9, {x: "-60%", ease: "power4.inOut"} , "-=0.8")
       .to(this.gd, 0.9, {x: "60%", ease: "power4.inOut"}, "-=0.9");
@@ -101,42 +102,52 @@ class Background extends Component {
      console.log(window.location.pathname)
     let url = window.location.pathname;
 
+    
+    
+
   
 
     if(!this.props.preLoader) {
       if(!this.props.triggerBackground && this.props.triggerBackground !== prevProps.triggerBackground) {
         //Close
-        
-    if(url === "/") {
-      this.imageR.to(this.rImage, 1.5, {x: "0%"})
-    } 
-    else if(url === "/work") {
-      this.imageR.to(this.lImage, 1.5, {x: "0%"})
-    } else {
-      this.imageR.to(this.lImage, 1.5, {x: "0%"})
-    }
+            
+        if(url === "/") {
+          this.imageTween.to(this.rImage, 1.5, {x: "0%"})
+                
+          console.log("SELECT RIGHT IMAGE");
+        }
+        if(url === "/work" || url === "/about") {
+          this.imageTween.to(this.lImage, 1.5, {x: "0%"})
+                         
+          console.log("SELECT LEFT IMAGE");
+        } 
+       
 
       
         console.log("BACKGROUND CLOSE")
         this.openState.play()
-        this.imageR.play();
+
+       
+
+        this.imageTween.play();
       } 
       if(this.props.triggerBackground && this.props.triggerBackground !== prevProps.triggerBackground) {
         //Open
 
         if(url === "/") {
-          this.imageR.to(this.rImage, 1.5, {x: "0%"})
+          this.imageTween.to(this.lImage, 0.8, {x: "-100%"})
+          console.log("SELECT RIGHT IMAGE");
         } 
-        else if(url === "/work") {
-          this.imageR.to(this.lImage, 1.5, {x: "0%"})
-        } else {
-          this.imageR.to(this.lImage, 1.5, {x: "0%"})
-        }
-    
+         if(url === "/work" || url === "/about") {
+          this.imageTween.to(this.rImage, 0.8, {x: "100%"})
+          console.log("SELECT LEFT IMAGE");
+        }  
+
+
        
         console.log("BACKGROUND OPEN")
         this.openState.reverse()
-        this.imageR.reverse();
+        this.imageTween.play();
       } 
       
       // if (prevProps.text !== this.props.text) {

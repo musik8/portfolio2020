@@ -29,3 +29,28 @@ canvas {
   }
   
 }
+
+.in-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  background-color: #000;
+  color: #fff;
+  font-family: "Founders Grotesk Bold";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  display: none;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 767px) {
+  .in-progress {
+    display: block;
+    pointer-events: auto;
+  }
+}

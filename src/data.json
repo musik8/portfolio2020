@@ -1,0 +1,156 @@
+[
+    {
+        "name": "Pristine Jewellers",
+        "interaction": "Developer & Designer",
+        "description": "One of the first projects that had me branding, UI/UX designing and implementing.",
+    
+        "content" : [
+            {"heading" : "The Project",
+                "desc" : "I was asked to brand a jewellery shop that mainly sold extremely expensive watches. I'm talking items that ranged from $20,000 - $60,000 in value. ",
+                "img": "./projects/ps/one.png"
+            },
+            {"heading" : "Logo",
+                "desc" : "During the process of mood boarding, the client liked elegant letter-based logos. The client also enjoyed the colour and texture of gold! I managed to get a clear direction.  The results turned out well, and the client approved of the 'P' I created using Adobe Illustrator and Photoshop.",
+                "img"  : "./projects/ps/two.png"
+            },
+            {"heading" : "Very Small Variation",
+                "desc" : "Example of slight adjustments to thickness and curves presented to the client.",
+                "img"  : "./projects/ps/four.png"
+            },
+            {"heading" : "",
+                "desc" : "Example Of Another Variation",
+                "img"  : "./projects/ps/three.png"
+            },
+          
+            {"heading" : "Website And Development",
+                "desc" : "When I was designing and implementing the website, I kept reminding myself that I am basically trying to sell luxury cars. I looked around for inspiration from other jeweller outlets, and I couldn't find one that gave appropriate attention to each product.",
+                "img"  : "./projects/ps/five.jpg"
+            },
+            {"heading" : "Opencart",
+                "desc" : "I chose the Opencart e-commerce platform that used PHP in the MVCL pattern.  I had to learn the Opencart as I was designing and implementing the website",
+                "img"  : "./projects/ps/six.png"
+            },
+            {"heading" : "Product Displays",
+                "desc" : "Reminder I'm selling a luxury item, and each individual piece needs to be put on a pedestal.",
+                "img"  : "./projects/ps/seven.jpg"
+            },
+            {"heading" : "Product Page Part One",
+                "desc" : "The presentation is vital. The website featured on page load transitions of images and text. The page featured parallax implementation of the photography.",
+                "img"  : "./projects/ps/eight.jpg"
+            },
+            {"heading" : "Part Two",
+                "desc" : "The Pristine Jewellers logo would parallax through some of the page. The main text would animate in one word at a time with the outline being an SVG animation that would follow the words from the top and bottom, eventually completing the square.",
+                "img"  : "./projects/ps/nine.jpg"
+            },
+            {"heading" : "Part Three",
+                "desc" : "Beautiful photography would show the product near the max screen size. Followed by the Logo appearing. ",
+                "img"  : "./projects/ps/ten.jpg"
+            },
+            {"heading" : "Part Four",
+                "desc" : "Same idea as previously stated, text transitions and box SVG animations followed by image transition.",
+                "img"  : "./projects/ps/eleven.jpg"
+            },
+            {"heading" : "Final",
+                "desc" : "By the end of the experience, the user would have gotten a great presentation of the product.",
+                "img"  : "./projects/ps/twelve.jpg"
+            }
+
+        ]
+    },
+    {
+        "name": "Capstone Project",
+        "interaction": "Developer & Designer",
+        "description": "This project is a three-semester marathon with a team comprising of three peers. The project is currently in progress, and I will show you mockups and ideas our team is currently working on.",
+        "content" : [
+            {"heading" : "The Idea",
+                "desc" : "The first step was to figure out what we were going to do for the project. We brainstormed ideas and did research. A large portion of the population was to retire in the next decade, fueling the demand for skilled tradespeople in the workforce. We decide to create a platform that would connect clients, tradespeople, and hiring organizations.",
+                "img": "./projects/capstone/1.png"
+            },
+            {"heading" : "The Technology",
+                "desc" : "We decided that React was the framework we are going to use. More specifically, we used the MERN (MongoDB, Express, React, and Node.js.) stack, which would cater to our backend needs as well as the frontend requirements. We also used Redux and React Function Components for communication through the application.  ",
+                "img": "./projects/capstone/2.png"
+            },
+            {"heading" : "Toolbox",
+                "desc" : "Part of my responsiblies is the design, and the images you have been looking at are mockups that are partial to almost completed implemented in the project. The landing page will ask for the user to register an account or log in. On the left is the main post board that displays the user content.",
+                "img": "./projects/capstone/3.png"
+            },
+            {"heading" : "Making Posts",
+                "desc" : "The user is allowed to make posts that would have tags attached to them. They can be asking for workers to complete projects by describing their needs and adding addional information like location.",
+                "img": "./projects/capstone/4.png"
+            },
+            {"heading" : "Profile",
+                "desc" : "The user will have to create a profile on top of just registering before they can use certain features with the platform.",
+                "img": "./projects/capstone/5.png"
+            },
+            {"heading" : "Portfolio",
+                "desc" : "Tradespeople can upload photography of work that they have done in the past to advertise themselves.",
+                "img": "./projects/capstone/6.png"
+            },
+            {"heading" : "Post",
+                "desc" : "The post display will allow interested tradespeople to contact the potential client. In this case, the client can view the portfolio or accept the worker for the job.",
+                "img": "./projects/capstone/7.png"
+            }
+            
+        ]
+
+    },
+
+      {
+        "name": "Michael Wekerle",
+        "interaction": "Developer",
+        "description": "My claim to fame, I developed Wekerle's website using Wordpress.",
+        "content" : [
+            {"heading" : "The Wek",
+                "desc" : "This is Michael Wekerle's personal website that he uses to display his media presence, which includes his Youtube channel, Instagram and Twitter, as well as any events and charities he supports. This was an iterative approach, as I received multiple designs over a period of time from the creative team.",
+                "img": "./projects/wek/1.jpg"
+            },
+            {"heading" : "Youtube API",
+                "desc" : "I had to connect to Wekerle's Youtube account using the API. I had to receive all his videos and place them into a pop-up menu. Clicking on the preview will play the video and cycle through as each finish.",
+                "img": "./projects/wek/2.jpg"
+            },
+            {"heading" : "Socail Media API",
+                "desc" : "Both Instagram and his Twitter feed are displayed at the same time in parallel  for maximum exposure. ",
+                "img": "./projects/wek/3.jpg"
+            }
+
+        ]
+    },
+
+      {
+        "name": "Portfolio",
+        "interaction": "Developer & Designer",
+        "description": "I created a new portfolio to show off some of my work and to try out new things.",
+        "content" : [
+            {"heading" : "Pencil And Paper",
+                "desc" : "I needed to think up of something that I can create in a reasonable amount of time, and that could impress the viewers. I decided I would try to use 3D objects on the web for my first time. As you can see, I would plan out layouts and jot down animation and transition ideas.",
+                "img": "./projects/portfolio/1.jpg"
+            },
+            {"heading" : "Designing",
+                "desc" : "Using Adobe XD, I started to iterate my ideas from paper into mockups that I can use when applying the designs.",
+                "img": "./projects/portfolio/2.jpg"
+            },
+
+            {"heading" : "Visualization ",
+                "desc" : "During the process, I would try and visualize how the website as a whole would fit together during transitions and animations from one component to the other. ",
+                "img": "./projects/portfolio/3.jpg"
+            },
+            {"heading" : "Abstract Iteration One",
+                "desc" : "",
+                "img": "./projects/portfolio/4.jpg"
+            },
+            {"heading" : "Abstract Iteration Two",
+                "desc" : "",
+                "img": "./projects/portfolio/5.jpg"
+            },
+            {"heading" : "3D Model And Application",
+                "desc" : "I used 3DS MAX to create half an M and applied textures to the UV map. I used Three.js, React-Three-Fiber and React-Spring to bring the 3D model to life. The animations for the rest of the site used a combination of CSS transitions and Greensock animation tools. The application was created in React.",
+                "img": "./projects/portfolio/6.jpg"
+            }
+
+        ]
+      }
+
+     
+    
+   
+]

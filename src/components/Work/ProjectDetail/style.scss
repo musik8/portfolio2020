@@ -1,0 +1,142 @@
+@import "../../../assets/stylesheets/main";
+
+.project-display-container {
+  position: fixed;
+  
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  pointer-events: none;
+  opacity: 0;
+  padding-top: $Dmw *2;
+ 
+  z-index: 2;
+
+  transition: opacity 400ms $easeInOut3 200ms;
+ 
+
+   
+  &.true {
+    opacity: 1;
+    pointer-events: auto;
+
+    .content-slide {
+      .image-content {
+        opacity: 1;
+        box-shadow: -1px 11px 17px -3px rgba(0,0,0,0.62);
+        transition: opacity 500ms $easeInOut3 400ms, box-shadow 800ms $easeInOut3 800ms;
+      }
+      .text-content {
+        opacity: 1;
+        box-shadow: -1px 11px 17px -3px rgba(0,0,0,0.62);
+        transition: opacity 500ms $easeInOut3 800ms, box-shadow 800ms $easeInOut3 900ms;
+      }
+     
+
+    }
+   
+  }
+
+
+
+  &::-webkit-scrollbar-track
+  {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
+      background-color: $darkRed;
+  }
+
+  &::-webkit-scrollbar
+  {
+      width: 10px;
+      background-color: $backgroundColor;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+      background-color: #000000;
+      //border: 2px solid #555555;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .close-project {
+
+    position: fixed;
+    left: $Dmw * 2;
+    top: 50%;
+    transform: translateY(-50%);
+  
+    background-color: #fff;
+    display: flex;
+    padding: $Dmw;
+    transition: box-shadow 500ms $easeInOut3;
+    box-shadow: -1px 11px 17px -3px rgba(0,0,0,0);
+
+    svg {
+      width: 50px;
+      height: 50px;
+
+      path {
+        transition: fill 500ms $easeInOut3;
+      }
+      
+    }
+
+    &:hover {
+      box-shadow: -1px 11px 17px -3px rgba(0,0,0,0.62);
+      cursor: pointer;
+
+      svg path {
+        fill: $darkRed;
+      }
+    }
+    
+  }
+
+  .content-slide {
+    padding-top: $Dmw;
+    width: (1000/1920) * 100vw; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+
+    .image-content {
+      width: 100%;
+      height: (562/1920) * 100vw;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: $Dmw;
+
+      transition: box-shadow 200ms $easeInOut3, opacity 200ms $easeInOut3 100ms;
+      opacity: 0;
+      box-shadow: -1px 11px 17px -3px rgba(0,0,0,0);
+    }
+    .text-content {
+      width: 100%;
+      box-sizing: border-box;
+      // height: (300/1920) * 100vw;
+      background-color: #fff;
+      
+      margin-bottom: $Dmw * 3;
+      opacity: 0;
+      transition: box-shadow 200ms $easeInOut3, opacity 200ms $easeInOut3 100ms;
+      box-shadow: -1px 11px 17px -3px rgba(0,0,0,0);
+
+      p {
+       padding: $Dmw;
+      }
+      h2 {
+        padding: $Dmw;
+      }
+    }
+  }
+  
+}
+
