@@ -175,7 +175,7 @@ class App extends Component {
       <Router>
       <div className="project-container">
       <div className="in-progress">
-        <span>Ops! Mobile display is still in the works. <br/>
+        <span>Oops! Mobile display is still in the works. <br/>
           Take a look on a bigger screen please!
         </span>
       </div>

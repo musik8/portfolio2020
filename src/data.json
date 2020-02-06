@@ -108,7 +108,7 @@
                 "desc" : "I had to connect to Wekerle's Youtube account using the API. I had to receive all his videos and place them into a pop-up menu. Clicking on the preview will play the video and cycle through as each finish.",
                 "img": "./projects/wek/2.jpg"
             },
-            {"heading" : "Socail Media API",
+            {"heading" : "Social Media API",
                 "desc" : "Both Instagram and his Twitter feed are displayed at the same time in parallel  for maximum exposure. ",
                 "img": "./projects/wek/3.jpg"
             }
